@@ -42,6 +42,24 @@ for OPERATOR_SDK_VERSION in "${!OSDK_VERSION_HASHES[@]}"; do
     mv $OPERATOR_SDK_BINARY /usr/local/bin
 done
 
+###############
+# Set up go env
+###############
+# Get rid of -mod=vendor
+unset GOFLAGS
+# No, really, we want to use modules
+export GO111MODULE=on
+
+#############
+# openapi-gen
+#############
+go get k8s.io/code-generator/cmd/openapi-gen@v0.19.4
+
+#########
+# mockgen
+#########
+go get github.com/golang/mock/mockgen@v1.4.4
+
 ####
 # yq
 ####
