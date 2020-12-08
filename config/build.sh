@@ -115,3 +115,8 @@ rm -rf /var/cache/yum
 
 popd
 rm -fr $tmpd
+
+# FIXME: consumers' go tool operations fail as non-root because
+# golang-1.13 seems to come with /go/pkg (and others) g-w. Hack around
+# this.
+chmod -R g+w /go
